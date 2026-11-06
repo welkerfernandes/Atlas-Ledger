@@ -35,11 +35,13 @@ const project='atlas-ledger';
   }
   assert.deepEqual(errors,[]);
   fs.mkdirSync(path.resolve('docs'),{recursive:true});
+  await page.evaluate(()=>scrollTo(0,0));
   await page.screenshot({path:'docs/dashboard.png',fullPage:true});
   await page.setViewportSize({width:390,height:844});
   await page.waitForTimeout(100);
   const size=await page.evaluate(()=>({body:document.documentElement.scrollWidth,viewport:innerWidth}));
   assert.ok(size.body<=size.viewport+1,'Mobile page overflow '+JSON.stringify(size));
+  await page.evaluate(()=>scrollTo(0,0));
   await page.screenshot({path:'docs/mobile.png',fullPage:true});
   console.log(JSON.stringify({project,desktop:'passed',mobile:'passed',javascriptErrors:errors.length}));
  }finally{await browser.close()}
