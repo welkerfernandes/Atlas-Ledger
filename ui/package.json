@@ -1,0 +1,8 @@
+{
+  "name": "atlas-ledger-browser-check",
+  "private": true,
+  "version": "1.0.0",
+  "dependencies": {
+    "playwright": "1.64.1"
+  }
+}
